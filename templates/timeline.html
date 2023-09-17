@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Timeline de Actividades</title>
+    <style>
+        /* Estilos para el scroll box */
+        .timeline-scroll {
+            max-height: calc(100vh - 100px); /* Altura máxima del scroll box (ajustada para dejar espacio para el botón de descarga y el título) */
+            overflow-y: auto; /* Habilitar la barra de desplazamiento vertical */
+            border: 1px solid #ccc; /* Agregar un borde al scroll box */
+            padding: 10px; /* Agregar espacio alrededor del scroll box */
+        }
+
+        /* Estilos para el timeline */
+        .timeline {
+            list-style: none;
+            padding: 0;
+        }
+
+        .timeline li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Botón para descargar el nuevo archivo CSV (movido al principio) -->
+    <form method="get" action="/download">
+        <button type="submit">Descargar CSV</button>
+    </form>
+
+    <h1>Timeline de Actividades</h1>
+    <div class="timeline-scroll">
+        <ul class="timeline">
+            {% for event in timeline_events %}
+                <li>{{ event['timestamp'] }} - {{ event['activity'] }} ({{ event['event'] }})</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
